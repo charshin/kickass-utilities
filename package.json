@@ -1,0 +1,85 @@
+{
+  "name": "kickass-utilities",
+  "version": "0.1.0",
+  "description": "My Kick Ass Utilities",
+  "main": "build/lib/index.js",
+  "module": "build/es/index.js",
+  "jsnext:main": "build/es/index.js",
+  "unpkg": "build/umd/kickass-utilities.min.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/charshin/kickass-utilities"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run build:lib && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build:lib": "babel src --out-dir build/lib --ignore __tests__ && (cd src; find . -name '*.scss' -o -name '*.css' | cpio -pdm ../build/lib)",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore __tests__ && (cd src; find . -name '*.scss' -o -name '*.css' | cpio -pdm ../build/es)",
+    "build:umd": "cross-env NODE_ENV=development webpack --mode=development -o build/umd/kickass-utilities.js",
+    "build:umd:min": "webpack --mode=production -o build/umd/kickass-utilities.min.js",
+    "clean": "rimraf build",
+    "lint": "eslint --ext .js --ext .jsx src",
+    "test": "jest",
+    "test:watch": "npm test --watch",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "utilities",
+    "kickass",
+    "common",
+    "ramda"
+  ],
+  "author": "Charlie Chau <chaunhihien@gmail.com> (http://github.com/charshin)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/charshin/kickass-utilities/issues"
+  },
+  "homepage": "https://github.com/charshin/kickass-utilities#readme",
+  "files": [
+    "build"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-do-expressions": "^7.6.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-dynamic-import-node": "^2.3.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^22.8.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "file-loader": "^4.2.0",
+    "jest": "^24.9.0",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.39.2",
+    "webpack-bundle-analyzer": "^3.4.1",
+    "webpack-cli": "^3.3.7"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.5.5",
+    "ramda": "^0.26.1"
+  }
+}
