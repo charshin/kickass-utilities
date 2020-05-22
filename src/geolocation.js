@@ -39,4 +39,4 @@ const fetchGeolocation = async () => {
   return null;
 };
 
-export { countryCodeOptions, fetchGeolocation };
+export default { countryCodeOptions, fetchGeolocation };
