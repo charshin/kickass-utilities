@@ -202,3 +202,4 @@ export {
   removeByPath,
   initialsOf,
 };
+export * from './geolocation';
