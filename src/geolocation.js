@@ -32,7 +32,12 @@ const countryCodeOptions = countries.all
   }));
 
 const fetchGeolocation = async () => {
-  return (await fetch(GELOCOATION_DB_URL)).json();
+  return formatGeolocation(await (await fetch(GELOCOATION_DB_URL)).json());
 };
 
+const formatGeolocation = ({ country_name, country_code, ...rest }) => ({
+  countryName: country_name,
+  countryCode: country_code,
+  ...rest,
+});
 export default { countryCodeOptions, fetchGeolocation };
