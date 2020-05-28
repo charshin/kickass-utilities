@@ -40,4 +40,5 @@ const formatGeolocation = ({ country_name, country_code, ...rest }) => ({
   countryCode: country_code,
   ...rest,
 });
+
 export default { countryCodeOptions, fetchGeolocation };
