@@ -1,7 +1,7 @@
-import 'isomorphic-fetch';
+import fetchJsonp from 'fetch-jsonp';
 import { countries } from 'country-data';
 
-const GELOCOATION_DB_URL = 'https://geolocation-db.com/json';
+const GELOCOATION_DB_URL = 'https://geolocation-db.com/jsonp';
 
 const countriesWithoutFlag = [
   'aq',
@@ -32,7 +32,11 @@ const countryCodeOptions = countries.all
   }));
 
 const fetchGeolocation = async () => {
-  return formatGeolocation(await (await fetch(GELOCOATION_DB_URL)).json());
+  return formatGeolocation(
+    await (await fetchJsonp(GELOCOATION_DB_URL, {
+      jsonpCallbackFunction: 'callback',
+    })).json(),
+  );
 };
 
 const formatGeolocation = ({ country_name, country_code, ...rest }) => ({
